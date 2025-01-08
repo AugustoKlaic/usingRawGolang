@@ -6,6 +6,9 @@ import (
 )
 
 func main() {
-	SimpleHelloWorld()
-	http.ListenAndServe(":8080", nil)
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", SimpleHelloWorld())
+	mux.HandleFunc("/complex", ComplexHelloWorld())
+
+	http.ListenAndServe(":8080", mux)
 }

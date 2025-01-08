@@ -5,8 +5,14 @@ import (
 	"net/http"
 )
 
-func SimpleHelloWorld() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+func SimpleHelloWorld() func(http.ResponseWriter, *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hello World")
-	})
+	}
+}
+
+func ComplexHelloWorld() func(http.ResponseWriter, *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Complex Hello World")
+	}
 }
